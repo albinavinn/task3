@@ -1,7 +1,6 @@
 
 // node game.js rock paper scissors lizard Spock
 
-
 const crypto = require('crypto');
 
 class KeyGenerator {
@@ -56,7 +55,6 @@ class Game {
   constructor(moves) {
     this.moves = moves;
     this.rules = new Rules(moves);
-    this.key = KeyGenerator.generateKey(256);
     this.playerWins = 0; 
     this.computerWins = 0; 
   }
@@ -90,6 +88,8 @@ class Game {
 
   async play() {
     while (true) {
+      this.key = KeyGenerator.generateKey(256); // Generate a new key for each game
+
       console.log('HMAC:', HMACGenerator.generateHMAC(this.key, this.moves[Math.floor(Math.random() * this.moves.length)]));
 
       this.displayMenu();
